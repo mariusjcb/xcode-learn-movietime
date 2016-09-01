@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *videoURl;
 @property (nonatomic, strong) NSString *duration;
-@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *desc;
 @property (nonatomic, strong) NSDictionary *qualities;
 
 @end
