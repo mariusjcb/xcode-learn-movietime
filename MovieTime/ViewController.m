@@ -39,11 +39,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)startFetchingGroups:(NSNotification *)notification
-{
-    [_manager fetchDatasByTitle:@"pirates+of+the"];
-}
-
 - (void)didReceiveMovies:(NSArray *)movies
 {
     _movies = movies;
