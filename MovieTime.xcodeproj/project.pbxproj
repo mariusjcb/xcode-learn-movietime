@@ -75,7 +75,8 @@
 			isa = PBXGroup;
 			children = (
 				7A16E1BA1D75CBB900337929 /* API Files */,
-				7A16E1B91D75CB9500337929 /* App Files */,
+				7A16E1A51D75AFFF00337929 /* ViewController.h */,
+				7A16E1A61D75B00000337929 /* ViewController.m */,
 				7A16E19F1D75AFFF00337929 /* Supporting Files */,
 			);
 			path = MovieTime;
@@ -84,7 +85,11 @@
 		7A16E19F1D75AFFF00337929 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7A16E1B91D75CB9500337929 /* App Files */,
 				7A16E1A01D75AFFF00337929 /* main.m */,
+				7A16E1AE1D75B00000337929 /* Assets.xcassets */,
+				7A16E1B31D75B00000337929 /* Info.plist */,
+				7A16E1AB1D75B00000337929 /* MovieTime.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -94,13 +99,8 @@
 			children = (
 				7A16E1A21D75AFFF00337929 /* AppDelegate.h */,
 				7A16E1A31D75AFFF00337929 /* AppDelegate.m */,
-				7A16E1A51D75AFFF00337929 /* ViewController.h */,
-				7A16E1A61D75B00000337929 /* ViewController.m */,
 				7A16E1A81D75B00000337929 /* Main.storyboard */,
-				7A16E1AE1D75B00000337929 /* Assets.xcassets */,
 				7A16E1B01D75B00000337929 /* LaunchScreen.storyboard */,
-				7A16E1B31D75B00000337929 /* Info.plist */,
-				7A16E1AB1D75B00000337929 /* MovieTime.xcdatamodeld */,
 			);
 			name = "App Files";
 			sourceTree = "<group>";

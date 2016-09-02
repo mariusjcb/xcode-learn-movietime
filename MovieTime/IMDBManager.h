@@ -20,7 +20,7 @@
 @property (nonatomic, weak) id<IMDBManagerDelegate> delegate;
 
 - (void)fetchDatasByTitle:(NSString *)title;
-- (void)fetchActorsByImdbID:(NSString *)imdbID;
+- (void)fetchActorsByMovie:(IMDBMovieDataModel *)movie;
 
 + (int)getIndexMovieByimdbID:(NSString *)imdbID fromArray:(NSArray *)moviesArray;
 

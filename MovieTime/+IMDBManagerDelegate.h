@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IMDBMovieDataModel.h"
 
 @protocol IMDBManagerDelegate <NSObject>
 
 - (void)didReceiveMovies:(NSArray *)movies;
-- (void)didReceiveActorsProperty:(NSDictionary *)actors forImdbID:(NSString *)imdbID;
+- (void)didReceiveActorsProperty:(NSDictionary *)actors forMovie:(IMDBMovieDataModel *)movie;
 - (void)fetchingJSONFailedWithError:(NSError *)error;
 
 @end

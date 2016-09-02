@@ -29,10 +29,11 @@
     _manager.search.delegate = _manager;
     _manager.delegate = self;
     
-    //[_manager fetchDatasByTitle:@"pirates+of+the"];
-    //[_manager fetchActorsByImdbID: [[_movies objectAtIndex:0] valueForKey:@"idIMDB"]];
+    [_manager fetchDatasByTitle:@"pirates+of+the"];
 }
 
+
+#pragma mark IMDBManagerDelegate
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -42,12 +43,12 @@
 - (void)didReceiveMovies:(NSArray *)movies
 {
     _movies = movies;
+    [_manager fetchActorsByMovie: [_movies objectAtIndex:0]];
 }
 
-- (void)didReceiveActorsProperty:(NSDictionary *)actors forImdbID:(NSString *)imdbID
+- (void)didReceiveActorsProperty:(NSDictionary *)actors forMovie:(IMDBMovieDataModel *)movie
 {
-    int indexOfMovie = [IMDBManager getIndexMovieByimdbID:imdbID fromArray:_movies];
-    [[_movies objectAtIndex:indexOfMovie] addActorsProperty:actors];
+    [movie addActorsProperty:actors];
 }
 
 - (void)fetchingJSONFailedWithError:(NSError *)error

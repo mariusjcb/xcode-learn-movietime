@@ -34,11 +34,13 @@
     ] resume];
 }
 
-- (void)loadActorsPropertyByImdbID:(NSString *)imdbID
+- (void)loadActorsPropertyByMovie:(IMDBMovieDataModel *)movie
 {
     NSString *apiURI = API_URI;
     NSString *apiToken = API_TOKEN;
     NSString *apiParams = API_IDIMDB_PARAMS;
+    
+    NSString *imdbID = [movie valueForKey:@"idIMDB"];
     
     NSString *uriString = [NSString stringWithFormat:@"%@%@&idIMDB=%@&token=%@", apiURI, apiParams, imdbID, apiToken];
     NSURL *url = [NSURL URLWithString:uriString];
@@ -48,7 +50,7 @@
       {
           if(error)
               [self.delegate fetchingJSONFailedWithError:error];
-          else [self.delegate receivedActorsJSONWithData:data forImdbID:(NSString *)imdbID];
+          else [self.delegate receivedActorsJSONWithData:data forMovie:movie];
       }
     ] resume];
 }
