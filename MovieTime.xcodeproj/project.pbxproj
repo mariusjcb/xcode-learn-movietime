@@ -15,8 +15,6 @@
 		7A16E1AF1D75B00000337929 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A16E1AE1D75B00000337929 /* Assets.xcassets */; };
 		7A16E1B21D75B00000337929 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A16E1B01D75B00000337929 /* LaunchScreen.storyboard */; };
 		7A16E1C11D75CE1D00337929 /* IMDBMovieDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16E1C01D75CE1D00337929 /* IMDBMovieDataModel.m */; };
-		7A16E1C41D75D34B00337929 /* IMDBActorDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16E1C31D75D34B00337929 /* IMDBActorDataModel.m */; };
-		7A16E1C71D7705F400337929 /* IMDBTrailerDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16E1C61D7705F400337929 /* IMDBTrailerDataModel.m */; };
 		7A16E1CE1D77184200337929 /* IMDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16E1CD1D77184200337929 /* IMDBSearch.m */; };
 		7A16E1D21D7735CA00337929 /* DataBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16E1D11D7735CA00337929 /* DataBuilder.m */; };
 		7A16E1D61D78671B00337929 /* IMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A16E1D51D78671B00337929 /* IMDBManager.m */; };
@@ -36,10 +34,6 @@
 		7A16E1B31D75B00000337929 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A16E1BF1D75CE1D00337929 /* IMDBMovieDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBMovieDataModel.h; sourceTree = "<group>"; };
 		7A16E1C01D75CE1D00337929 /* IMDBMovieDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBMovieDataModel.m; sourceTree = "<group>"; };
-		7A16E1C21D75D34B00337929 /* IMDBActorDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBActorDataModel.h; sourceTree = "<group>"; };
-		7A16E1C31D75D34B00337929 /* IMDBActorDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBActorDataModel.m; sourceTree = "<group>"; };
-		7A16E1C51D7705F400337929 /* IMDBTrailerDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBTrailerDataModel.h; sourceTree = "<group>"; };
-		7A16E1C61D7705F400337929 /* IMDBTrailerDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBTrailerDataModel.m; sourceTree = "<group>"; };
 		7A16E1CC1D77184200337929 /* IMDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBSearch.h; sourceTree = "<group>"; };
 		7A16E1CD1D77184200337929 /* IMDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBSearch.m; sourceTree = "<group>"; };
 		7A16E1D01D7735CA00337929 /* DataBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBuilder.h; sourceTree = "<group>"; };
@@ -140,10 +134,6 @@
 			children = (
 				7A16E1BF1D75CE1D00337929 /* IMDBMovieDataModel.h */,
 				7A16E1C01D75CE1D00337929 /* IMDBMovieDataModel.m */,
-				7A16E1C21D75D34B00337929 /* IMDBActorDataModel.h */,
-				7A16E1C31D75D34B00337929 /* IMDBActorDataModel.m */,
-				7A16E1C51D7705F400337929 /* IMDBTrailerDataModel.h */,
-				7A16E1C61D7705F400337929 /* IMDBTrailerDataModel.m */,
 			);
 			name = DataModels;
 			sourceTree = "<group>";
@@ -221,11 +211,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A16E1C11D75CE1D00337929 /* IMDBMovieDataModel.m in Sources */,
-				7A16E1C71D7705F400337929 /* IMDBTrailerDataModel.m in Sources */,
 				7A16E1D21D7735CA00337929 /* DataBuilder.m in Sources */,
 				7A16E1A71D75B00000337929 /* ViewController.m in Sources */,
 				7A16E1AD1D75B00000337929 /* MovieTime.xcdatamodeld in Sources */,
-				7A16E1C41D75D34B00337929 /* IMDBActorDataModel.m in Sources */,
 				7A16E1A41D75AFFF00337929 /* AppDelegate.m in Sources */,
 				7A16E1D61D78671B00337929 /* IMDBManager.m in Sources */,
 				7A16E1CE1D77184200337929 /* IMDBSearch.m in Sources */,

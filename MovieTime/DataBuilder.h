@@ -11,5 +11,6 @@
 @interface DataBuilder : NSObject
 
 + (NSArray *)parseJSONFromData:(NSData *)data error:(NSError **)error;
++ (NSDictionary *)parseActorJSONFromData:(NSData *)data error:(NSError **)error;
 
 @end

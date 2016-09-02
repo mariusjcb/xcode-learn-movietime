@@ -17,7 +17,6 @@
     NSArray *_movies;
     IMDBManager *_manager;
 }
-
 @end
 
 @implementation ViewController
@@ -30,7 +29,8 @@
     _manager.search.delegate = _manager;
     _manager.delegate = self;
     
-    [_manager fetchDatasByTitle:@"pirates+of+the"];
+    //[_manager fetchDatasByTitle:@"pirates+of+the"];
+    //[_manager fetchActorsByImdbID: [[_movies objectAtIndex:0] valueForKey:@"idIMDB"]];
 }
 
 
@@ -42,6 +42,12 @@
 - (void)didReceiveMovies:(NSArray *)movies
 {
     _movies = movies;
+}
+
+- (void)didReceiveActorsProperty:(NSDictionary *)actors forImdbID:(NSString *)imdbID
+{
+    int indexOfMovie = [IMDBManager getIndexMovieByimdbID:imdbID fromArray:_movies];
+    [[_movies objectAtIndex:indexOfMovie] addActorsProperty:actors];
 }
 
 - (void)fetchingJSONFailedWithError:(NSError *)error

@@ -16,6 +16,11 @@
     [self.search searchDatasByTitle:title];
 }
 
+- (void)fetchActorsByImdbID:(NSString *)imdbID
+{
+    [self.search loadActorsPropertyByImdbID:imdbID];
+}
+
 #pragma mark - IMDBSearchDelegate
 
 - (void)receivedJSONWithData:(NSData *)jsonObject
@@ -28,9 +33,34 @@
     else [self.delegate didReceiveMovies:movies];
 }
 
+- (void)receivedActorsJSONWithData:(NSData *)jsonObject forImdbID:(NSString *)imdbID
+{
+    NSError *error = nil;
+    NSDictionary *actors = [DataBuilder parseActorJSONFromData:jsonObject error:&error];
+    
+    if (error != nil)
+        [self.delegate fetchingJSONFailedWithError:error];
+    else [self.delegate didReceiveActorsProperty:actors forImdbID:imdbID];
+}
+
 - (void)fetchingJSONFailedWithError:(NSError *)error
 {
     [self.delegate fetchingJSONFailedWithError:error];
+}
+
++ (int)getIndexMovieByimdbID:(NSString *)imdbID fromArray:(NSArray *)moviesArray
+{
+    int index = 0;
+    int returnIndex = -1;
+    for(IMDBMovieDataModel *movie in moviesArray)
+    {
+        if([movie valueForKey:@"idIMDB"] == imdbID)
+            returnIndex = index;
+        
+        index++;
+    }
+    
+    return returnIndex;
 }
 
 @end

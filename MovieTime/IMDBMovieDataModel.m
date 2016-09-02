@@ -10,7 +10,7 @@
 
 @implementation IMDBMovieDataModel
 
-- (void) addActorsProperty:(NSArray<IMDBActorDataModel *> *)actors
+- (void) addActorsProperty:(NSDictionary *)actors
 {
     self.actors = actors;
 }

@@ -7,8 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#include "IMDBActorDataModel.h"
-#include "IMDBTrailerDataModel.h"
 
 @interface IMDBMovieDataModel : NSObject
 
@@ -18,26 +16,26 @@
 @property (strong, nonatomic) NSString *originalTitle;
 @property (strong, nonatomic) NSString *year;
 @property (strong, nonatomic) NSString *releaseDate;
-@property (strong, nonatomic) NSArray *directors;
-@property (strong, nonatomic) NSArray *writers;
+@property (strong, nonatomic) NSDictionary *directors;
+@property (strong, nonatomic) NSDictionary *writers;
 @property (strong, nonatomic) NSString *runtime;
 @property (strong, nonatomic) NSString *urlPoster;
-@property (strong, nonatomic) NSArray *countries;
-@property (strong, nonatomic) NSArray *languages;
-@property (strong, nonatomic) NSArray *genres;
+@property (strong, nonatomic) NSDictionary *countries;
+@property (strong, nonatomic) NSDictionary *languages;
+@property (strong, nonatomic) NSDictionary *genres;
 @property (strong, nonatomic) NSString *plot;
 @property (strong, nonatomic) NSString *simplePlot;
 @property (strong, nonatomic) NSString *rating;
 @property (strong, nonatomic) NSString *metascore;
-@property (strong, nonatomic) NSArray *filmingLocations;
-@property (strong, nonatomic) NSArray *keywords;
-@property (strong, nonatomic) NSArray *quotes;
+@property (strong, nonatomic) NSDictionary *filmingLocations;
+@property (strong, nonatomic) NSDictionary *keywords;
+@property (strong, nonatomic) NSDictionary *quotes;
 @property (strong, nonatomic) NSString *rated;
-@property (strong, nonatomic) NSArray *votes;
+@property (strong, nonatomic) NSDictionary *votes;
 @property (strong, nonatomic) NSString *type;
-@property (strong, nonatomic) IMDBTrailerDataModel *trailer;
-@property (strong, nonatomic) NSArray<IMDBActorDataModel *> *actors;
+@property (strong, nonatomic) NSDictionary *trailer;
+@property (strong, nonatomic) NSDictionary *actors;
 
-- (void) addActorsProperty:(NSArray<IMDBActorDataModel *> *)actors;
+- (void) addActorsProperty:(NSDictionary *)actors;
 
 @end

@@ -17,5 +17,6 @@
 @property (nonatomic, weak) id<IMDBSearchDelegate> delegate;
 
 - (void)searchDatasByTitle:(NSString *)title;
+- (void)loadActorsPropertyByImdbID:(NSString *)imdbID;
 
 @end

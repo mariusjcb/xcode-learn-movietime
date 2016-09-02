@@ -19,7 +19,9 @@
 @property (nonatomic, strong) IMDBSearch *search;
 @property (nonatomic, weak) id<IMDBManagerDelegate> delegate;
 
-
 - (void)fetchDatasByTitle:(NSString *)title;
+- (void)fetchActorsByImdbID:(NSString *)imdbID;
+
++ (int)getIndexMovieByimdbID:(NSString *)imdbID fromArray:(NSArray *)moviesArray;
 
 @end

@@ -13,6 +13,7 @@
 @protocol IMDBSearchDelegate <NSObject>
 
 - (void)receivedJSONWithData:(NSData *)jsonObject;
+- (void)receivedActorsJSONWithData:(NSData *)jsonObject forImdbID:(NSString *)imdbID;
 - (void)fetchingJSONFailedWithError:(NSError *)error;
 
 @end

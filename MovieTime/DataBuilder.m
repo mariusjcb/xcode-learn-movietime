@@ -40,4 +40,20 @@
     return movies;
 }
 
++ (NSDictionary *)parseActorJSONFromData:(NSData *)data error:(NSError **)error
+{
+    NSError *localError = nil;
+    NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+    if (localError != nil)
+    {
+        *error = localError;
+        return nil;
+    }
+    
+    NSDictionary *actors = [[[[parsedObject valueForKey:@"data"] valueForKey:@"movies"] objectAtIndex:0] valueForKey:@"actors"];
+    
+    return actors;
+}
+
 @end

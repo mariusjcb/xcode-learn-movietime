@@ -11,6 +11,7 @@
 @protocol IMDBManagerDelegate <NSObject>
 
 - (void)didReceiveMovies:(NSArray *)movies;
+- (void)didReceiveActorsProperty:(NSDictionary *)actors forImdbID:(NSString *)imdbID;
 - (void)fetchingJSONFailedWithError:(NSError *)error;
 
 @end
