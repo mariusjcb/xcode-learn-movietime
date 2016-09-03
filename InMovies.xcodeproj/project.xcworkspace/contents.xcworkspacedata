@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MovieTime.xcodeproj">
+      location = "self:/Users/mariusjcb/Documents/xCode-Projects/xcode-learn-movietime/InMovies.xcodeproj">
    </FileRef>
 </Workspace>
