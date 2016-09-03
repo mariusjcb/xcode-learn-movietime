@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RootView : UIViewController
+@interface RootView : UIView
 
 + (void)initMainNavigationToolBarWithNavigationController:(UINavigationController *)navController andNavigationItem:(UINavigationItem *)navItem;
 + (void)addBlurredBgToMainView:(UIView *)view;

@@ -14,27 +14,22 @@
 
 @implementation RootView
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 + (void)initMainNavigationToolBarWithNavigationController:(UINavigationController *)navController andNavigationItem:(UINavigationItem *)navItem
 {
-    [navController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+    [navController.navigationBar setBarStyle:UIBarStyleDefault];
     navController.navigationBar.topItem.title = @"InMovies";
     
     UIBarButtonItem *addNewMovieButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:nil];
-    addNewMovieButton.tintColor = [UIColor whiteColor];
+    addNewMovieButton.tintColor = [UIColor blackColor];
     [navItem setRightBarButtonItem:addNewMovieButton];
     
     UIBarButtonItem *openMenuButton = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"list-fat-7"] style:UIBarButtonItemStylePlain target:self action:nil];
-    openMenuButton.tintColor = [UIColor whiteColor];
+    openMenuButton.tintColor = [UIColor blackColor];
+    
+    navController.navigationBar.translucent = YES;
+    
+    [navController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    [navController.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics:UIBarMetricsDefault];
     
     [navItem setLeftBarButtonItem:openMenuButton];
 }
@@ -52,14 +47,14 @@
         //MARK: Blur Effect
         //Stackoverflow: http://stackoverflow.com/questions/17041669/creating-a-blurring-overlay-view
         
-        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
         UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         blurEffectView.frame = view.bounds;
         blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
         [backgroundView addSubview:blurEffectView];
         [view addSubview:backgroundView];
-    } else [view setBackgroundColor: [UIColor colorWithRed:0.14f green:0.14f blue:0.14f alpha:1.0f]];
+    } else [view setBackgroundColor: [UIColor colorWithRed:0.86f green:0.86f blue:0.86f alpha:1.0f]];
 }
 
 /*
