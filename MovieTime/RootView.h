@@ -11,5 +11,6 @@
 @interface RootView : UIViewController
 
 + (void)initMainNavigationToolBarWithNavigationController:(UINavigationController *)navController andNavigationItem:(UINavigationItem *)navItem;
++ (void)addBlurredBgToMainView:(UIView *)view;
 
 @end

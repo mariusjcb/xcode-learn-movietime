@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RootView.h";
 
 @interface RootController : UIViewController
 

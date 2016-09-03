@@ -39,6 +39,29 @@
     [navItem setLeftBarButtonItem:openMenuButton];
 }
 
++ (void)addBlurredBgToMainView:(UIView *)view
+{
+    if (!UIAccessibilityIsReduceTransparencyEnabled())
+    {
+        UIView *backgroundView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height+[UIScreen mainScreen].bounds.origin.y)];
+        
+        UIImageView *backgroundImage = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"bgToBlur"]];
+        backgroundImage.frame = backgroundView.frame;
+        [backgroundView addSubview:backgroundImage];
+        
+        //MARK: Blur Effect
+        //Stackoverflow: http://stackoverflow.com/questions/17041669/creating-a-blurring-overlay-view
+        
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        blurEffectView.frame = view.bounds;
+        blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        [backgroundView addSubview:blurEffectView];
+        [view addSubview:backgroundView];
+    } else [view setBackgroundColor: [UIColor colorWithRed:0.14f green:0.14f blue:0.14f alpha:1.0f]];
+}
+
 /*
 #pragma mark - Navigation
 

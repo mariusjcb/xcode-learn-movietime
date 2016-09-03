@@ -7,6 +7,7 @@
 //
 
 #import "RootController.h"
+#import "RootView.h"
 
 #import "IMDBMovieDataModel.h"
 #import "IMDBManager.h"
@@ -24,18 +25,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor: [UIColor colorWithRed:0.14f green:0.14f blue:0.14f alpha:1.0f]];
+    [self initIMDBManager];
+
+    [RootView initMainNavigationToolBarWithNavigationController:self.navigationController andNavigationItem:self.navigationItem];
+    [RootView addBlurredBgToMainView:self.view];
     
+    //[_manager fetchDatasByTitle:@"pirates+of+the"];
+    //[_manager fetchActorsByMovie: [_movies objectAtIndex:0]];
+}
+
+- (void) initIMDBManager
+{
     _manager = [[IMDBManager alloc] init];
     _manager.search = [[IMDBSearch alloc] init];
     _manager.search.delegate = _manager;
     _manager.delegate = self;
-    
-    
-    [RootView initMainNavigationToolBarWithNavigationController:self.navigationController andNavigationItem:self.navigationItem];
-    
-    //[_manager fetchDatasByTitle:@"pirates+of+the"];
-    //[_manager fetchActorsByMovie: [_movies objectAtIndex:0]];
 }
 
 #pragma mark IMDBManagerDelegate
