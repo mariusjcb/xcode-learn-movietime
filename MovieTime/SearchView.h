@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "+NavigationDelegates.h"
 
-@interface SearchView : UIView
+@interface SearchView : UITableView
+
+@property (nonatomic, weak) id<SearchNavigationDelegate> delegate;
+
+- (id)initNavigationToolBarWithNavigationController:(UINavigationController *)navController andNavigationItem:(UINavigationItem *)navItem andSearchBar:(UISearchBar *)searchBar;
+
+@property (nonatomic, strong) UIViewController<UISearchBarDelegate> *controller;
 
 @end

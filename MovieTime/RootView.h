@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "+NavigationDelegate.h"
+#import "+NavigationDelegates.h"
 
 @interface RootView : UIView
 
-@property (nonatomic, weak) id<NavigationDelegate> delegate;
+@property (nonatomic, weak) id<MainNavigationDelegate> delegate;
 
-- (void)initMainNavigationToolBarWithNavigationController:(UINavigationController *)navController andNavigationItem:(UINavigationItem *)navItem;
+- (void)initNavigationToolBarWithNavigationController:(UINavigationController *)navController andNavigationItem:(UINavigationItem *)navItem;
 
 + (void)addBlurredBgToMainView:(UIView *)view;
 

@@ -30,11 +30,14 @@
     {
         IMDBMovieDataModel *movieObj = [[IMDBMovieDataModel alloc] init];
         
-        for (NSString *key in movieResult)
-            if ([movieObj respondsToSelector:NSSelectorFromString(key)])
-                [movieObj setValue:[movieResult valueForKey:key] forKey:key];
+        if([movieResult objectForKey:@"title"] != nil && [movieResult objectForKey:@"year"] != nil && [movieResult objectForKey:@"urlPoster"] != nil)
+        {
+            for (NSString *key in movieResult)
+                if ([movieObj respondsToSelector:NSSelectorFromString(key)])
+                    [movieObj setValue:[movieResult valueForKey:key] forKey:key];
         
-        [movies addObject:movieObj];
+            [movies addObject:movieObj];
+        }
     }
     
     return movies;

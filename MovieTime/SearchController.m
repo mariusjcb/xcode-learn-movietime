@@ -7,21 +7,126 @@
 //
 
 #import "SearchController.h"
+#import "SearchView.h"
+#import "SearchTableViewCell.h"
 
-@interface SearchController ()
+#import "IMDBMovieDataModel.h"
+#import "IMDBManager.h"
+#import "IMDBSearch.h"
+
+@interface SearchController () <IMDBManagerDelegate, SearchNavigationDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
+{
+    NSArray *_movies;
+    IMDBManager *_manager;
+    
+    SearchView *_searchView;
+    IBOutlet UISearchBar *_searchBar;
+}
 
 @end
 
 @implementation SearchController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    NSLog(@"works");
+    [self initIMDBManager];
+    [self initGraphics];
+}
+
+- (void) initIMDBManager
+{
+    _manager = [[IMDBManager alloc] init];
+    _manager.search = [[IMDBSearch alloc] init];
+    _manager.search.delegate = _manager;
+    _manager.delegate = self;
+}
+
+- (void) initGraphics
+{
+    _searchView = [[SearchView alloc] init];
+    _searchView.delegate = self;
+    
+    _searchBar = [[UISearchBar alloc] init];
+    _searchBar.delegate = self;
+    
+    _searchBar = (UISearchBar *)[_searchView initNavigationToolBarWithNavigationController:self.navigationController andNavigationItem:self.navigationItem andSearchBar:_searchBar];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark UISearchBarDelegate
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+    [_manager fetchDatasByTitle:searchBar.text];
+}
+
+#pragma mark SearchNavigationDelegate
+
+- (IBAction)didClickedCloseBarButton:(id)sender
+{
+    [_searchBar resignFirstResponder];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark IMDBManagerDelegate
+
+- (void)didReceiveMovies:(NSArray *)movies
+{
+    _movies = movies;
+    [self.tableView reloadData];
+}
+
+- (void)didReceiveActorsProperty:(NSDictionary *)actors forMovie:(IMDBMovieDataModel *)movie
+{
+    [movie addActorsProperty:actors];
+}
+
+- (void)fetchingJSONFailedWithError:(NSError *)error
+{
+    NSLog(@"ERROR: %@", [error localizedDescription]);
+}
+
+#pragma mark UITableViewDelegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [_movies count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *simpleTableIdentifier = @"SearchTableViewCell";
+    
+    SearchTableViewCell *cell = (SearchTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SearchTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: [[_movies objectAtIndex:indexPath.row] valueForKey:@"urlPoster"]]];
+    cell.thumbnailImageView.image = [UIImage imageWithData:imageData];
+    
+    cell.titleLabel.text = [[_movies objectAtIndex:indexPath.row] valueForKey:@"title"];
+    cell.yearLabel.text = [NSString stringWithFormat:@"Year: %@ | %@", [[_movies objectAtIndex:indexPath.row] valueForKey:@"year"], [[_movies objectAtIndex:indexPath.row] valueForKey:@"type"]];
+    
+    return cell;
 }
 
 /*

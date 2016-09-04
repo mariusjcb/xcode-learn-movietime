@@ -9,14 +9,8 @@
 #import "RootController.h"
 #import "RootView.h"
 
-#import "IMDBMovieDataModel.h"
-#import "IMDBManager.h"
-#import "IMDBSearch.h"
-
-@interface RootController () <IMDBManagerDelegate, NavigationDelegate>
+@interface RootController () <MainNavigationDelegate>
 {
-    NSArray *_movies;
-    IMDBManager *_manager;
     RootView *_mainView;
 }
 
@@ -27,20 +21,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self initIMDBManager];
     [self initGraphics];
     
     //[_manager fetchDatasByTitle:@"pirates+of+the"];
     //[_manager fetchActorsByMovie: [_movies objectAtIndex:0]];
 }
 
-- (void) initIMDBManager
-{
-    _manager = [[IMDBManager alloc] init];
-    _manager.search = [[IMDBSearch alloc] init];
-    _manager.search.delegate = _manager;
-    _manager.delegate = self;
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void) initGraphics
@@ -48,39 +37,19 @@
     _mainView = [[RootView alloc] init];
     _mainView.delegate = self;
     
-    [_mainView initMainNavigationToolBarWithNavigationController:self.navigationController andNavigationItem:self.navigationItem];
+    [_mainView initNavigationToolBarWithNavigationController:self.navigationController andNavigationItem:self.navigationItem];
     
     [RootView addBlurredBgToMainView:self.view];
 }
 
-#pragma mark IMDBManagerDelegate
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)didReceiveMovies:(NSArray *)movies
-{
-    _movies = movies;
-}
-
-- (void)didReceiveActorsProperty:(NSDictionary *)actors forMovie:(IMDBMovieDataModel *)movie
-{
-    [movie addActorsProperty:actors];
-}
-
-- (void)fetchingJSONFailedWithError:(NSError *)error
-{
-    NSLog(@"ERROR: %@", [error localizedDescription]);
-}
-
-#pragma mark NavigationDelegate
+#pragma mark MainNavigationDelegate
 
 - (IBAction)didClickedAddBarButton:(id)sender
 {
     SearchController *searchPage = [[SearchController alloc] initWithNibName:@"SearchView" bundle:nil];
-    [self.navigationController pushViewController:searchPage animated:YES];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:searchPage];
+    
+    [self.navigationController presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end

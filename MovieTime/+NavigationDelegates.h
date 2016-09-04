@@ -11,8 +11,14 @@
 // Nav Controllers
 #import "SearchController.h"
 
-@protocol NavigationDelegate <NSObject>
+@protocol MainNavigationDelegate <NSObject>
 
 - (IBAction)didClickedAddBarButton:(id)sender;
+
+@end
+
+@protocol SearchNavigationDelegate <NSObject>
+
+- (IBAction)didClickedCloseBarButton:(id)sender;
 
 @end

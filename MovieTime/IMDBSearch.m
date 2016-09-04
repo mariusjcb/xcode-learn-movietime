@@ -17,6 +17,8 @@
 
 - (void)searchDatasByTitle:(NSString *)title
 {
+    title = [title stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+    
     NSString *apiURI = API_URI;
     NSString *apiToken = API_TOKEN;
     NSString *apiParams = API_TITLE_PARAMS;

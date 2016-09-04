@@ -19,7 +19,7 @@
     [self.delegate didClickedAddBarButton:sender];
 }
 
-- (void)initMainNavigationToolBarWithNavigationController:(UINavigationController *)navController andNavigationItem:(UINavigationItem *)navItem
+- (void)initNavigationToolBarWithNavigationController:(UINavigationController *)navController andNavigationItem:(UINavigationItem *)navItem
 {
     [navController.navigationBar setBarStyle:UIBarStyleDefault];
     navController.navigationBar.topItem.title = @"InMovies";
