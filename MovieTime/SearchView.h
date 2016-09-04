@@ -13,6 +13,7 @@
 
 @property (nonatomic, weak) id<SearchNavigationDelegate, UITableViewDelegate> delegate;
 @property (nonatomic, strong) UIActivityIndicatorView *loadDataMonitor;
+@property (nonatomic, assign) CGPoint offset;
 
 - (id)initNavigationToolBarWithNavigationController:(UINavigationController *)navController andNavigationItem:(UINavigationItem *)navItem andSearchBar:(UISearchBar *)searchBar;
 

@@ -63,6 +63,9 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    _movies = nil;
+    [self.tableView reloadData];
+    
     [searchBar resignFirstResponder];
     
     [_searchView addActivityIndicator];

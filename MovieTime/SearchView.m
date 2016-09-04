@@ -40,6 +40,8 @@
 
 - (void)addActivityIndicator
 {
+    self.controller.refreshControl = nil;
+    
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.backgroundColor = [UIColor colorWithRed:0.9f green:0.93f blue:0.93f alpha:0.93f];
     
