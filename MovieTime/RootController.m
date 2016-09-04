@@ -13,22 +13,23 @@
 #import "IMDBManager.h"
 #import "IMDBSearch.h"
 
-@interface RootController () <IMDBManagerDelegate>
+@interface RootController () <IMDBManagerDelegate, NavigationDelegate>
 {
     NSArray *_movies;
     IMDBManager *_manager;
+    RootView *_mainView;
 }
 
 @end
 
 @implementation RootController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
     [self initIMDBManager];
-
-    [RootView initMainNavigationToolBarWithNavigationController:self.navigationController andNavigationItem:self.navigationItem];
-    [RootView addBlurredBgToMainView:self.view];
+    [self initGraphics];
     
     //[_manager fetchDatasByTitle:@"pirates+of+the"];
     //[_manager fetchActorsByMovie: [_movies objectAtIndex:0]];
@@ -40,6 +41,16 @@
     _manager.search = [[IMDBSearch alloc] init];
     _manager.search.delegate = _manager;
     _manager.delegate = self;
+}
+
+- (void) initGraphics
+{
+    _mainView = [[RootView alloc] init];
+    _mainView.delegate = self;
+    
+    [_mainView initMainNavigationToolBarWithNavigationController:self.navigationController andNavigationItem:self.navigationItem];
+    
+    [RootView addBlurredBgToMainView:self.view];
 }
 
 #pragma mark IMDBManagerDelegate
@@ -62,6 +73,14 @@
 - (void)fetchingJSONFailedWithError:(NSError *)error
 {
     NSLog(@"ERROR: %@", [error localizedDescription]);
+}
+
+#pragma mark NavigationDelegate
+
+- (IBAction)didClickedAddBarButton:(id)sender
+{
+    SearchController *searchPage = [[SearchController alloc] initWithNibName:@"SearchView" bundle:nil];
+    [self.navigationController pushViewController:searchPage animated:YES];
 }
 
 @end

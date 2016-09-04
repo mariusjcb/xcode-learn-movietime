@@ -14,12 +14,17 @@
 
 @implementation RootView
 
-+ (void)initMainNavigationToolBarWithNavigationController:(UINavigationController *)navController andNavigationItem:(UINavigationItem *)navItem
+- (void) callAddButtonDelegate:(id)sender
+{
+    [self.delegate didClickedAddBarButton:sender];
+}
+
+- (void)initMainNavigationToolBarWithNavigationController:(UINavigationController *)navController andNavigationItem:(UINavigationItem *)navItem
 {
     [navController.navigationBar setBarStyle:UIBarStyleDefault];
     navController.navigationBar.topItem.title = @"InMovies";
     
-    UIBarButtonItem *addNewMovieButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:nil];
+    UIBarButtonItem *addNewMovieButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(callAddButtonDelegate:)];
     addNewMovieButton.tintColor = [UIColor blackColor];
     [navItem setRightBarButtonItem:addNewMovieButton];
     
