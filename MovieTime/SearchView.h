@@ -11,10 +11,14 @@
 
 @interface SearchView : UITableView
 
-@property (nonatomic, weak) id<SearchNavigationDelegate> delegate;
+@property (nonatomic, weak) id<SearchNavigationDelegate, UITableViewDelegate> delegate;
+@property (nonatomic, strong) UIActivityIndicatorView *loadDataMonitor;
 
 - (id)initNavigationToolBarWithNavigationController:(UINavigationController *)navController andNavigationItem:(UINavigationItem *)navItem andSearchBar:(UISearchBar *)searchBar;
 
-@property (nonatomic, strong) UIViewController<UISearchBarDelegate> *controller;
+- (void)addActivityIndicator;
+- (void)removeActivityIndicator;
+
+@property (nonatomic, strong) UITableViewController<UISearchBarDelegate> *controller;
 
 @end

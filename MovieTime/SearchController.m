@@ -46,6 +46,7 @@
 {
     _searchView = [[SearchView alloc] init];
     _searchView.delegate = self;
+    _searchView.controller = self;
     
     _searchBar = [[UISearchBar alloc] init];
     _searchBar.delegate = self;
@@ -63,6 +64,8 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
+    
+    [_searchView addActivityIndicator];
     [_manager fetchDatasByTitle:searchBar.text];
 }
 
@@ -79,7 +82,11 @@
 - (void)didReceiveMovies:(NSArray *)movies
 {
     _movies = movies;
-    [self.tableView reloadData];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_searchView removeActivityIndicator];
+        [self.tableView reloadData];
+    });
 }
 
 - (void)didReceiveActorsProperty:(NSDictionary *)actors forMovie:(IMDBMovieDataModel *)movie

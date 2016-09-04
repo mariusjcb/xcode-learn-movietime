@@ -38,6 +38,22 @@
     return (id)searchBar;
 }
 
+- (void)addActivityIndicator
+{
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.backgroundColor = [UIColor colorWithRed:0.9f green:0.93f blue:0.93f alpha:0.93f];
+    
+    self.controller.refreshControl = refreshControl;
+    
+    [self.controller.refreshControl beginRefreshing];
+}
+
+- (void)removeActivityIndicator
+{
+    [self.controller.refreshControl endRefreshing];
+    self.controller.refreshControl = nil;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
