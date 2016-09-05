@@ -40,6 +40,23 @@
         }
     }
     
+    [movies sortUsingComparator:^(id obj1, id obj2) {
+        NSString *obj1FirstYear = [[obj1 valueForKey:@"year"] substringToIndex: 4];
+        NSString *obj2FirstYear = [[obj2 valueForKey:@"year"] substringToIndex: 4];
+        
+        NSString *obj1Year = [[obj1 valueForKey:@"year"] substringFromIndex: [[obj1 valueForKey:@"year"] length] - 4];
+        NSString *obj2Year = [[obj2 valueForKey:@"year"] substringFromIndex: [[obj2 valueForKey:@"year"] length] - 4];
+        
+        // compare years
+        if ([obj1Year integerValue] > [obj2Year integerValue] || [obj1FirstYear integerValue] > [obj2FirstYear integerValue] || [obj1Year integerValue] > [obj2FirstYear integerValue] || [obj1FirstYear integerValue] > [obj2Year integerValue])
+            return (NSComparisonResult)NSOrderedAscending;
+        
+        if ([obj1Year integerValue] < [obj2Year integerValue] || [obj1FirstYear integerValue] < [obj2FirstYear integerValue] || [obj1Year integerValue] < [obj2FirstYear integerValue] || [obj1FirstYear integerValue] < [obj2Year integerValue])
+            return (NSComparisonResult)NSOrderedDescending;
+        
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    
     return movies;
 }
 

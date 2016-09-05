@@ -12,6 +12,7 @@
 @interface SearchView : UITableView
 
 @property (nonatomic, weak) id<SearchNavigationDelegate, UITableViewDelegate> delegate;
+@property (nonatomic, strong) UITableViewController<UISearchBarDelegate> *controller;
 @property (nonatomic, strong) UIActivityIndicatorView *loadDataMonitor;
 @property (nonatomic, assign) CGPoint offset;
 
@@ -20,6 +21,6 @@
 - (void)addActivityIndicator;
 - (void)removeActivityIndicator;
 
-@property (nonatomic, strong) UITableViewController<UISearchBarDelegate> *controller;
++ (void)setNoDataTableView:(UITableView *)tableView;
 
 @end

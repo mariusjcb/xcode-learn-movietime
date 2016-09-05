@@ -106,7 +106,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    long numOfRows = [_movies count];
+    
+    if(numOfRows>0)
+    {
+        tableView.backgroundView = nil;
+        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        
+        return 1;
+    } else [SearchView setNoDataTableView:tableView];
+    
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

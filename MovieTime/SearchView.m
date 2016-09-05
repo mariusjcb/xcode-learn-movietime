@@ -40,20 +40,66 @@
 
 - (void)addActivityIndicator
 {
-    self.controller.refreshControl = nil;
+    UITableView *tableView = self.controller.tableView;
     
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.backgroundColor = [UIColor colorWithRed:0.9f green:0.93f blue:0.93f alpha:0.93f];
+    UIView *bgView = [[UIView alloc] initWithFrame:tableView.bounds];
+    UIActivityIndicatorView *activIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(tableView.bounds.size.width/2-20, tableView.bounds.size.height/2-12, tableView.bounds.size.width, 40)];
+    UILabel *movies = [[UILabel alloc] initWithFrame:CGRectMake(0, tableView.bounds.size.height/2+30, tableView.bounds.size.width, 40)];
     
-    self.controller.refreshControl = refreshControl;
+    activIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    activIndicator.tintColor = [UIColor grayColor];
+    activIndicator.color = [UIColor grayColor];
+    activIndicator.hidden = NO;
+    [activIndicator sizeToFit];
     
-    [self.controller.refreshControl beginRefreshing];
+    movies.text = @"Loading...";
+    [movies setFont:[UIFont fontWithName:@"Helvetica" size:20]];
+    movies.textAlignment = NSTextAlignmentCenter;
+    movies.textColor = [UIColor grayColor];
+    
+    [bgView addSubview:activIndicator];
+    [bgView addSubview:movies];
+    
+    tableView.backgroundView = bgView;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [activIndicator startAnimating];
 }
 
 - (void)removeActivityIndicator
 {
-    [self.controller.refreshControl endRefreshing];
-    self.controller.refreshControl = nil;
+    self.controller.tableView.backgroundView = nil;
+}
+
++ (void)setNoDataTableView:(UITableView *)tableView
+{
+    UIView *bgView = [[UIView alloc] initWithFrame:tableView.bounds];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, tableView.bounds.size.height/2-61, tableView.bounds.size.width, 80)];
+    UIImage *bgImg = [UIImage imageNamed:@"television"];
+    UILabel *movies = [[UILabel alloc] initWithFrame:CGRectMake(0, tableView.bounds.size.height/2+28, tableView.bounds.size.width, 40)];
+    UILabel *noDataLoaded = [[UILabel alloc] initWithFrame:CGRectMake(0, tableView.bounds.size.height/2+68, tableView.bounds.size.width, 40)];
+    
+    imgView.image = bgImg;
+    imgView.tintColor = [UIColor grayColor];
+    imgView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    movies.text = @"No Movies";
+    [movies setFont:[UIFont fontWithName:@"Helvetica-Light" size:25]];
+    movies.textAlignment = NSTextAlignmentCenter;
+    movies.textColor = [UIColor grayColor];
+    
+    noDataLoaded.text = @"You can search for a movie\nusing search bar.";
+    [noDataLoaded setFont:[UIFont fontWithName:@"Helvetica-Light" size:16]];
+    noDataLoaded.textAlignment = NSTextAlignmentCenter;
+    noDataLoaded.numberOfLines = 2;
+    noDataLoaded.textColor = [UIColor grayColor];
+    
+    [bgView addSubview:imgView];
+    [bgView addSubview:movies];
+    [bgView addSubview:noDataLoaded];
+    
+    tableView.backgroundView = bgView;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 /*
