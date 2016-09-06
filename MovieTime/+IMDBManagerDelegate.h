@@ -2,8 +2,8 @@
 //  +IMDBManagerDelegate.h
 //  MovieTime
 //
-//  Created by Marius Ilie on 01/09/2016.
-//  Copyright © 2016 Marius Ilie. All rights reserved.
+//  Created by Buzoianu Stefan on 01/09/2016.
+//  Copyright © 2016 Buzoianu Stefan. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

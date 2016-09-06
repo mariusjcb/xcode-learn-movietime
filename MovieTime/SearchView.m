@@ -2,8 +2,8 @@
 //  SearchView.m
 //  InMovies
 //
-//  Created by Marius Ilie on 04/09/2016.
-//  Copyright © 2016 Marius Ilie. All rights reserved.
+//  Created by Buzoianu Stefan on 04/09/2016.
+//  Copyright © 2016 Buzoianu Stefan. All rights reserved.
 //
 
 #import "SearchView.h"
@@ -18,15 +18,18 @@
 
 - (id)initNavigationToolBarWithNavigationController:(UINavigationController *)navController andNavigationItem:(UINavigationItem *)navItem andSearchBar:(UISearchBar *)searchBar
 {
+    [navController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [navController.navigationBar setShadowImage:nil];
+    
     [navController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     navController.navigationBar.translucent = YES;
     
-    UIBarButtonItem *closeModalButton = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"circle-x-7"] style:UIBarButtonItemStylePlain target:self action:@selector(callCloseButtonDelegate:)];
+    UIBarButtonItem *closeModalButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(callCloseButtonDelegate:)];
     closeModalButton.tintColor = [UIColor whiteColor];
     
     [navItem setLeftBarButtonItem:closeModalButton];
     
-    long leftPos = [[closeModalButton valueForKey:@"view"] frame].size.width + 5;
+    long leftPos =[[closeModalButton valueForKey:@"view"] frame].size.width + 8;
     long width = navController.navigationBar.bounds.size.width - leftPos - 15;
     long height = navController.navigationBar.bounds.size.height/2;
     

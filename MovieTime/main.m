@@ -2,8 +2,8 @@
 //  main.m
 //  MovieTime
 //
-//  Created by Marius Ilie on 30/08/2016.
-//  Copyright © 2016 Marius Ilie. All rights reserved.
+//  Created by Buzoianu Stefan on 30/08/2016.
+//  Copyright © 2016 Buzoianu Stefan. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

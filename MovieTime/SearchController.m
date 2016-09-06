@@ -2,8 +2,8 @@
 //  SearchController.m
 //  InMovies
 //
-//  Created by Marius Ilie on 04/09/2016.
-//  Copyright © 2016 Marius Ilie. All rights reserved.
+//  Created by Buzoianu Stefan on 04/09/2016.
+//  Copyright © 2016 Buzoianu Stefan. All rights reserved.
 //
 
 #import "SearchController.h"
@@ -30,6 +30,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initIMDBManager];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self initIMDBManager];
     [self initGraphics];
 }
@@ -69,7 +75,11 @@
     [searchBar resignFirstResponder];
     
     [_searchView addActivityIndicator];
-    [_manager fetchDatasByTitle:searchBar.text];
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_async(queue, ^(void) {
+        [_manager fetchDatasByTitle:searchBar.text];
+    });
 }
 
 #pragma mark SearchNavigationDelegate
@@ -77,7 +87,7 @@
 - (IBAction)didClickedCloseBarButton:(id)sender
 {
     [_searchBar resignFirstResponder];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark IMDBManagerDelegate
@@ -139,9 +149,21 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SearchTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
+    cell.thumbnailImageView.image = nil;
     
-    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: [[_movies objectAtIndex:indexPath.row] valueForKey:@"urlPoster"]]];
-    cell.thumbnailImageView.image = [UIImage imageWithData:imageData];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_async(queue, ^(void) {
+        NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: [[_movies objectAtIndex:indexPath.row] valueForKey:@"urlPoster"]]];
+        UIImage *image = [[UIImage alloc] initWithData:imageData];
+        
+        if (image)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.thumbnailImageView.image = image;
+                [cell setNeedsLayout];
+            });
+        }
+    });
     
     cell.titleLabel.text = [[_movies objectAtIndex:indexPath.row] valueForKey:@"title"];
     cell.yearLabel.text = [NSString stringWithFormat:@"Year: %@ | %@", [[_movies objectAtIndex:indexPath.row] valueForKey:@"year"], [[_movies objectAtIndex:indexPath.row] valueForKey:@"type"]];

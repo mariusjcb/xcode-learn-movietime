@@ -2,8 +2,8 @@
 //  RootViewController.h
 //  MovieTime
 //
-//  Created by Marius Ilie on 03/09/2016.
-//  Copyright © 2016 Marius Ilie. All rights reserved.
+//  Created by Buzoianu Stefan on 03/09/2016.
+//  Copyright © 2016 Buzoianu Stefan. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
